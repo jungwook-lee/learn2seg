@@ -1,4 +1,5 @@
 import math
+import yaml
 
 """ box_center format = [x, y, width/2, height/2]"""
 """ box_range format = [left, bottom, width, height] """
@@ -35,3 +36,14 @@ def inf_box_range(box_range, x_inf, y_inf):
     box_center[3] *= y_inf
     box_range = box_center_to_box_range(box_center)
     return box_range
+
+
+def get_configs(config_file):
+    config_dict = dict()
+    with open(config_file, 'r') as f:
+        try:
+            config_dict = yaml.safe_load(f)
+        except yaml.YAMLError as exc:
+            print(exc)
+
+    return config_dict

@@ -2,7 +2,7 @@ import random
 from matplotlib import pyplot as plt
 
 from learn2seg.data.TeethBoxes import TeethBoxesDataset
-from learn2seg.image.tools import crop_im
+from learn2seg.tools.tools import crop_im
 
 
 def main():

@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 import matplotlib.patches as patches
 
 from learn2seg.data.TeethBoxes import TeethBoxesDataset
-from learn2seg.image.tools import *
+from learn2seg.tools.tools import *
 
 
 def main():

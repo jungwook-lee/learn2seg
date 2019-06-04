@@ -3,3 +3,7 @@
 
 streamlit
 matplotlib
+tensorflow
+numpy
+keras
+yaml
