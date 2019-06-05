@@ -1,4 +1,5 @@
 # learn2seg
+> Learn to segment using only bounding boxes!
 
 ## Description of Project
 
