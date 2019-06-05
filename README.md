@@ -1,16 +1,11 @@
 # learn2seg
-> Learn to segment using only bounding boxes!
+> Learn to segment images using only bounding box annotations!
 
-## Description of Project
+The following package provides a framework to easily apply weakly annotated learning for segmentation.
 
-## Description of Data
-
-## Plan of Implementation
-
-## Requisites
-
-- greyscale image
-- bounding box annotations
+Current limitations:
+- Only works on greyscale images
+- Fixed image sizes only
 
 #### Dependencies
 
@@ -22,13 +17,3 @@ To install the package above, pleae run:
 ```shell
 pip install -r requiremnts
 ```
-
-## Test
-
-## Run Inference
-
-## Build Model
-
-## Serve Model
-
-# Data description
