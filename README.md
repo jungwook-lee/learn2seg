@@ -3,7 +3,7 @@
 
 The following package provides a framework to easily apply weakly annotated learning for segmentation.
 
-Current limitations:
+#### Current limitations:
 - Only works on greyscale images
 - Fixed image sizes only
 
