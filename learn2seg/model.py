@@ -1,17 +1,11 @@
 """ Unet model code from https://github.com/zhixuhao/unet """
-
-import numpy as np
-import os
-import skimage.io as io
-import skimage.transform as trans
-import numpy as np
 from keras.models import *
 from keras.layers import *
 from keras.optimizers import *
-from keras.callbacks import ModelCheckpoint, LearningRateScheduler
 from keras import backend as keras
 
-import learn2seg.metric.iou as iou
+import learn2seg.iou as iou
+
 
 def unet(pretrained_weights=None, input_size=(512, 512, 1), weight_div=1, double_layer=False, lr=1e-4):
 

@@ -1,12 +1,10 @@
 """ Unet training code from https://github.com/zhixuhao/unet """
-from learn2seg.model.unet2 import *
-from learn2seg.data.feeder import *
-
-import tensorflow as tf
-from keras.backend.tensorflow_backend import set_session
-
 import matplotlib.pyplot as plt
-import numpy as np
+from keras.backend.tensorflow_backend import set_session
+from keras.callbacks import ModelCheckpoint
+
+from learn2seg.model import *
+from learn2seg.feeder import *
 
 # configurations 
 config = tf.ConfigProto()
@@ -48,7 +46,6 @@ valGen = trainGenerator(1, 'dataset/seg_teeth_warp/val/',
 model = unet(weight_div=2, double_layer=False, 
              input_size=(496, 352, 1), lr=1e-5)
 
-#filepath="weights/checkpoint-{epoch:02d}-{loss:.4f}-{iou_score:.4f}-{val_iou_score:.4f}.hdf5"
 filepath="weights/checkpoint.hdf5"
 model_checkpoint = ModelCheckpoint(filepath,
                                    monitor='val_acc',
@@ -83,7 +80,3 @@ plt.xlabel('epoch')
 plt.legend(['train', 'val'], loc='upper left')
 plt.savefig('out/acc.png')
 plt.clf()
-
-#testGene = testGenerator("/home/jung/data/teeth/pan-teeth/test/image")
-#results = model.predict_generator(testGene, 1, verbose=1)
-#saveResult("out/teeth/test", results)

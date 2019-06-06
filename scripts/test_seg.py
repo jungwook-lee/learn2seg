@@ -1,7 +1,7 @@
 """ Unet training code from https://github.com/zhixuhao/unet """
 
-from learn2seg.model.unet2 import *
-from learn2seg.data.feeder import *
+from learn2seg.unet2 import *
+from learn2seg.feeder import *
 
 import tensorflow as tf
 from keras.backend.tensorflow_backend import set_session

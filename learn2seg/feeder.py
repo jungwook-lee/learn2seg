@@ -1,26 +1,13 @@
+""" Unet model code from https://github.com/zhixuhao/unet """
+
 from __future__ import print_function
 from keras.preprocessing.image import ImageDataGenerator
 import numpy as np
 import os
-import glob
+
 import skimage.io as io
 import skimage.transform as trans
 
-Sky = [128,128,128]
-Building = [128,0,0]
-Pole = [192,192,128]
-Road = [128,64,128]
-Pavement = [60,40,222]
-Tree = [128,128,0]
-SignSymbol = [192,128,128]
-Fence = [64,64,128]
-Car = [64,0,128]
-Pedestrian = [64,64,0]
-Bicyclist = [0,128,192]
-Unlabelled = [0,0,0]
-
-COLOR_DICT = np.array([Sky, Building, Pole, Road, Pavement,
-                          Tree, SignSymbol, Fence, Car, Pedestrian, Bicyclist, Unlabelled])
 
 def adjustData(img, mask, flag_multi_class, num_class):
     img = img / 255
@@ -67,6 +54,7 @@ def trainGenerator(batch_size,train_path,image_folder,mask_folder,aug_dict,image
         img,mask = adjustData(img,mask,flag_multi_class,num_class)
         yield (img,mask)
 
+
 def valGenerator(val_path, image_folder, target_size):
    # aug_dict for validation is not needed
     aug_dict = dict()
@@ -95,6 +83,7 @@ def valGenerator(val_path, image_folder, target_size):
     #    img = np.reshape(img,(1,)+img.shape)
     #    yield img
 
+
 def testGenerator(test_path, num_image,target_size = (512, 512),flag_multi_class = False,as_gray = True):
     for i in range(num_image):
         img = io.imread(os.path.join(test_path,"%d.jpeg"%i),as_gray = as_gray)
@@ -104,6 +93,7 @@ def testGenerator(test_path, num_image,target_size = (512, 512),flag_multi_class
         img = np.reshape(img,(1,)+img.shape)
         yield img
 
+
 def testGenerator_png(test_path, num_image,target_size = (512, 512),flag_multi_class = False,as_gray = True):
     for i in range(num_image):
         img = io.imread(os.path.join(test_path,"%d.png"%i),as_grey = as_gray)
@@ -112,15 +102,17 @@ def testGenerator_png(test_path, num_image,target_size = (512, 512),flag_multi_c
         #img = np.reshape(img,img.shape+(1,)) if (not flag_multi_class) else img
         yield img
 
+
 def saveResult(save_path, npyfile, flag_multi_class = False, num_class = 2):
     for i, item in enumerate(npyfile):
-        img = labelVisualize(num_class,COLOR_DICT,item) if flag_multi_class else item[:,:,0]
+        img = item[:,:,0]
         #img = ((img*10.0))
         #factor = 1.0/np.max(img)
         #img = img*factor
         #img[:, :] = (img[:, :] >) * 255
         img = (img > 0.5) * 255
         io.imsave(os.path.join(save_path,"%d_predict.png"%i), img)
+
 
 def labelVisualize(num_class,color_dict,img):
     img = img[:,:,0] if len(img.shape) == 3 else img
