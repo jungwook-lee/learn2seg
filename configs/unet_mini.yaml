@@ -1,0 +1,23 @@
+#-----------------------------------------------------------------------------
+# Dataset
+dataset_config:
+    data_path: /home/jung/dataset/seg_teeth_v2_mini
+    image_size: [496, 352]
+
+#-----------------------------------------------------------------------------
+# Training Hyperparams
+train_config:
+    out_path: /home/jung/output/seg_teeth_mini
+
+    weight_div: 2
+    double_layer: False
+
+    batch_size: 2
+
+    apply_aug: True
+
+    train_epoch: 100
+    train_steps: 3839
+    val_steps: 719
+
+    learning_rate: 1e-5
