@@ -1,10 +1,11 @@
 # Dataset Stuff -------------------------------------------------
 
-data_path: /home/jung/dataset/seg_teeth_v2
-output_path: ~/output
+dataset_config:
+  data_path: /home/jung/dataset/seg_teeth_v2
+  output_path: ~/output
 
-# Image [Height, Width]
-image_size: [496, 352]
+  # Image [Height, Width]
+  image_size: [496, 352]
 
 # Training Hyperparams --------------------------------------
 

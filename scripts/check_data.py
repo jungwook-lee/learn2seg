@@ -5,7 +5,6 @@ import os.path as path
 
 import numpy as np
 import skimage.io as io
-import learn2seg.tools as tools
 
 
 def check_class_balance(label_dir, im_size):
@@ -36,13 +35,8 @@ def check_class_balance(label_dir, im_size):
 
 
 if __name__ == '__main__':
-    module_path = path.dirname(path.abspath(__file__))
-    root_path = path.dirname(module_path)
-    config_file = path.join(root_path, 'configs/unet_config.yml')
-
-    config = tools.get_configs(config_file)
-    data_path = config['data_path']
-    im_size = tuple(config['image_size'])
+    data_path = '/home/jung/dataset/seg_teeth_v2'
+    im_size = (496, 352)
 
     # Checking class balance for train set
     print("Checking binary balance for train set ...")
