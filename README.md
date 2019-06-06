@@ -20,3 +20,8 @@ To install the package above, pleae run:
 ```shell
 pip install -r requiremnts
 ```
+
+#### Data Structure
+- train/val/test
+- image/label
+
