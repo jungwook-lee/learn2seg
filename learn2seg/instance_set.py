@@ -18,7 +18,7 @@ class InstanceDataset(object):
         for split in self.splits:
             self.split_path[split] = os.path.join(path, split)
 
-        self.im_size = conf['im_size']
+        self.im_size = conf['image_size']
 
     def get_data_size(self, split):
         """ Assumes that image/label files have identical number of samples """

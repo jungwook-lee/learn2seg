@@ -21,6 +21,12 @@ To install the package above, pleae run:
 pip install -r requiremnts
 ```
 
+Add learn2seg to PYTHONPATH
+```bash
+export PYTHONPATH=$PYTHONPATH:/path/to/learn2seg
+```
+
+
 #### Data Structure
 - train/val/test
 - image/label
