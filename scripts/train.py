@@ -101,7 +101,7 @@ def train_model(dataset, train_config):
     plt.savefig(out_path)
     plt.clf()
 
-    # Copy the config file to the output
+    # TODO: Copy the config file to the output
 
 
 if __name__ == "__main__":
@@ -111,6 +111,5 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     config_dict = tools.get_configs(args.configs[0])
-    print(config_dict)
     new_dataset = InstanceDataset(config_dict)
     train_model(new_dataset, config_dict['train_config'])
