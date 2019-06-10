@@ -22,17 +22,11 @@ if __name__ == "__main__":
     out_path = train_config['out_path']
     if os.path.exists(out_path):
         raise ValueError("Out path already exists!")
-    else:   
+    else:
         os.mkdir(out_path)
 
     his = trainer.train_model(new_dataset, train_config)
     trainer.plot_model(his, train_config)
-
-    eval_path = os.path.join(out_path, 'eval')
-    if os.path.exists(eval_path):
-        raise ValueError("eval_path already exists!")
-    else:
-        os.mkdir(eval_path)
 
     # Evaluate the performance
     evaluator.eval(new_dataset, train_config)

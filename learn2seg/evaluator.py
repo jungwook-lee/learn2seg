@@ -8,7 +8,14 @@ from learn2seg.model import unet
 from learn2seg.feeder import *
 
 
-def eval(dataset, train_config):
+def eval(dataset, train_config, iteration=0):
+    out_path = train_config['out_path']
+    eval_path = os.path.join(out_path, 'eval_%d' % iteration)
+    if os.path.exists(eval_path):
+        raise ValueError("eval_path already exists!")
+    else:
+        os.mkdir(eval_path)
+
     config = tf.ConfigProto()
     # dynamically grow the memory used on the GPU
     config.gpu_options.allow_growth = True
@@ -29,16 +36,19 @@ def eval(dataset, train_config):
     model.load_weights(weight_path)
 
     # Generate results for all three splits [train/val/test]
+    splits = ['train', 'val', 'test']
+    for split in splits:
+        data_gene = valGenerator(dataset.split_path[split], 'image',
+                                 target_size=dataset.im_size)
 
-    # Validation Split
-    data_gene = valGenerator(dataset.split_path['val'], 'image',
-                             target_size=dataset.im_size)
+        steps_key = split + '_steps'
+        results = model.predict_generator(data_gene,
+                                          steps=train_config[steps_key],
+                                          verbose=1
+                                          )
 
-    results = model.predict_generator(data_gene,
-                                      steps=train_config['val_steps'],
-                                      verbose=1
-                                      )
-
-    eval_path = os.path.join(train_config['out_path'], 'eval', 'val')
-    os.mkdir(eval_path)
-    saveResult(eval_path, results)
+        eval_path = os.path.join(train_config['out_path'],
+                                 'eval_%d' % iteration,
+                                 split)
+        os.mkdir(eval_path)
+        saveResult(eval_path, results)
