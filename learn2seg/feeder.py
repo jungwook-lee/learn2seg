@@ -119,7 +119,7 @@ def saveResult(save_path, npyfile, flag_multi_class = False, num_class = 2):
         #img = img*factor
         #img[:, :] = (img[:, :] >) * 255
         img = (img > 0.5) * 255
-        io.imsave(os.path.join(save_path,"%d_predict.png"%i), img)
+        io.imsave(os.path.join(save_path, "%d.png" % i), img.astype(np.uint8))
 
 
 def labelVisualize(num_class,color_dict,img):
