@@ -1,13 +1,13 @@
 #-----------------------------------------------------------------------------
 # Dataset
 dataset_config:
-    data_path: /home/jung/dataset/seg_teeth_v2
+    data_path: /home/ubuntu/dataset/seg_teeth_eq_v2
     image_size: [496, 352]
 
 #-----------------------------------------------------------------------------
 # Training Parameters
 train_config:
-    out_path: /home/jung/output/seg_teeth
+    out_path: /home/jung/output/seg_model
 
     weight_div: 2
     double_layer: False

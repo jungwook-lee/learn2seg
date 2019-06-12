@@ -5,7 +5,7 @@ dataset_config:
     image_size: [496, 352]
 
 #-----------------------------------------------------------------------------
-# Training Hyperparams
+# Training Parameters
 train_config:
     out_path: /home/jung/output/seg_teeth_mini
 
@@ -19,5 +19,6 @@ train_config:
     train_epoch: 100
     train_steps: 3839
     val_steps: 719
+    test_steps: 239
 
     learning_rate: 1e-4
