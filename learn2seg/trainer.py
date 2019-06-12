@@ -53,7 +53,8 @@ def train_model(dataset, train_config):
     file_path = os.path.join(train_config['out_path'], "checkpoint.hdf5")
     model_checkpoint = ModelCheckpoint(file_path,
                                        monitor='val_bin_iou',
-                                       verbose=False,
+                                       verbose=True,
+                                       mode='max',
                                        save_best_only=True)
 
     # train samples - 7821, val - 1345, test - 398
