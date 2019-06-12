@@ -102,9 +102,10 @@ python scripts/train.py /path/to/config/file.yaml
 [simple_does_it]:https://arxiv.org/pdf/1603.07485.pdf
 
 ## Disclaimer 
-
-The following is an Artificial Intelligence Project done at Insight Fellowship.
 <p align="center">
   <img src="docs/insight_logo.png">
 </p>
 
+<p align="center">
+  The following is an Artificial Intelligence Project done at Insight Fellowship.
+</p>
