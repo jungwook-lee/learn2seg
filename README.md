@@ -1,6 +1,7 @@
-![alt text](docs/repo_logo.png)
+<p align="center">
+  <img src="docs/repo_logo.png">
+</p>
 
-# Learn2Seg
 > Learn to segment images using only bounding box annotations!
 
 The following package provides a framework to easily apply weakly annotated learning for segmentation.
