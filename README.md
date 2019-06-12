@@ -1,10 +1,11 @@
-# Disclaimer [WIP]
-The following repository does not currently have all the functions implemented!
+![alt text](docs/repo_logo.png)
 
-# learn2seg
+# Learn2Seg
 > Learn to segment images using only bounding box annotations!
 
 The following package provides a framework to easily apply weakly annotated learning for segmentation.
+
+## Features
 
 #### Current limitations:
 - Only works on greyscale images
@@ -14,6 +15,8 @@ The following package provides a framework to easily apply weakly annotated lear
 
 - OpenCV
 - Keras with Tensorflow Backend
+
+## Setup
 
 #### Installation
 To install the package above, pleae run:
@@ -26,8 +29,8 @@ Add learn2seg to PYTHONPATH
 export PYTHONPATH=$PYTHONPATH:/path/to/learn2seg
 ```
 
+## Usage
 
 #### Data Structure
 - train/val/test
 - image/label
-
