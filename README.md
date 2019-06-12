@@ -104,3 +104,7 @@ python scripts/train.py /path/to/config/file.yaml
 ## Disclaimer 
 
 The following is an Artificial Intelligence Project done at Insight Fellowship.
+<p align="center">
+  <img src="docs/insight_logo.png">
+</p>
+
