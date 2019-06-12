@@ -1,7 +1,4 @@
-# Disclaimer [WIP]
-The following repository does not currently have all the functions implemented!
-
-# learn2seg
+# Learn2Seg
 > Learn to segment images using only bounding box annotations!
 
 The following package provides a framework to easily apply weakly annotated learning for segmentation.
