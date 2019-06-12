@@ -52,7 +52,7 @@ def train_model(dataset, train_config):
 
     file_path = os.path.join(train_config['out_path'], "checkpoint.hdf5")
     model_checkpoint = ModelCheckpoint(file_path,
-                                       monitor='val_acc',
+                                       monitor='val_bin_iou',
                                        verbose=False,
                                        save_best_only=True)
 
@@ -95,12 +95,12 @@ def plot_model(history, train_config):
     plt.clf()
 
     # plot iou
-    plt.plot(history.history['iou_score'])
-    plt.plot(history.history['val_iou_score'])
-    plt.title('iou')
+    plt.plot(history.history['bin_iou'])
+    plt.plot(history.history['val_bin_iou'])
+    plt.title('binary_iou')
     plt.ylabel('iou')
     plt.xlabel('epoch')
     plt.legend(['train', 'val'], loc='upper left')
-    out_path = os.path.join(plot_dir, 'iou.png')
+    out_path = os.path.join(plot_dir, 'binary_iou.png')
     plt.savefig(out_path)
     plt.clf()

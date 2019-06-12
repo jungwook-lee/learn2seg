@@ -89,8 +89,8 @@ def unet(pretrained_weights=None, input_size=(512, 512, 1), weight_div=1, double
     model.compile(optimizer=Adam(lr=lr),
                   loss='binary_crossentropy',
                   #loss=jaccard_distance_loss,
-                  metrics=['acc', metrics.iou_score]) # binary_accuracy
-    
+                  metrics=['acc', metrics.bin_iou])
+
     #model.summary()
 
     if pretrained_weights:

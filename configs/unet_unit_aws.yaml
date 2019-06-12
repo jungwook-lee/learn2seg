@@ -7,7 +7,7 @@ dataset_config:
 #-----------------------------------------------------------------------------
 # Training Parameters
 train_config:
-    out_path: /home/ubuntu/output/seg_teeth_unit
+    out_path: /home/ubuntu/output/unit_test
 
     weight_div: 2
     double_layer: False

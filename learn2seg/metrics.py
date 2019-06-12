@@ -22,7 +22,6 @@ def iou_loss_core(true,pred):  #this can be used as a loss if you make it negati
 
 
 def iou_score(true, pred): #any shape can go - can't be a loss function
-
     tresholds = [0.5 + (i*.05) for i in range(10)]
 
     #flattened images (batch, pixels)
@@ -45,8 +44,6 @@ def iou_score(true, pred): #any shape can go - can't be a loss function
     testTrue = tf.boolean_mask(true, truePositiveMask)
     testPred = tf.boolean_mask(pred, truePositiveMask)
 
-    # print(testPred)
-
     #getting iou and threshold comparisons
     iou = iou_loss_core(testTrue, testPred)
     truePositives = [castF(K.greater(iou, tres)) for tres in tresholds]
@@ -56,51 +53,18 @@ def iou_score(true, pred): #any shape can go - can't be a loss function
     truePositives = K.sum(truePositives)
 
     #to get images that don't have mask in both true and pred
-    trueNegatives = (1-true1) * (1 - pred1) # = 1 -true1 - pred1 + true1*pred1
+    trueNegatives = (1 - true1) * (1 - pred1) # = 1 -true1 - pred1 + true1*pred1
     trueNegatives = K.sum(trueNegatives)
 
     return (truePositives + trueNegatives) / castF(K.shape(true)[0])
 
 
-def binary_iou(true, pred):
-    true = K.batch_flatten(true)
-    pred = K.batch_flatten(pred)
-    # pred = castF(K.greater(pred, 0.5))
-    print(true)
-    print(pred)
+# https://stackoverflow.com/questions/48455338/tensorflow-mean-iou-how-to-get-consistent-results
+def bin_iou(y_true, y_pred):
+    yt0 = y_true[:, :, :, 0]
+    yp0 = K.cast(y_pred[:, :, :, 0] > 0.5, 'float32')
 
-    return
-
-
-if __name__ == '__main__':
-    # Setup TF configs
-    sess_config = tf.ConfigProto()
-    sess_config.gpu_options.allow_growth = True
-    sess = tf.Session(config=sess_config)
-    set_session(sess)
-
-    # test the iou output
-    true = [[0, 0, 0, 0],
-            [1, 1, 1, 1],
-            [1, 1, 1, 1],
-            [0, 0, 0, 0]
-            ]
-
-    true = np.asarray(true, dtype=np.float32)
-    # change to [batch, im_height, im_width, channel]
-    true = np.expand_dims(true, axis=0)
-    true = np.expand_dims(true, axis=3)
-    print(true.shape)
-
-    pred = [[0, 0, 0, 0],
-            [0, 1, 1, 1],
-            [1, 0, 1, 0],
-            [0, 0, 0, 0]
-            ]
-
-    pred = np.asarray(pred, dtype=np.float32)
-    pred = np.expand_dims(pred, axis=0)
-    pred = np.expand_dims(pred, axis=3)
-    print(pred.shape)
-
-    print(sess.run(iou_score(pred, true)))
+    inter = tf.count_nonzero(tf.logical_and(tf.equal(yt0, 1), tf.equal(yp0, 1)))
+    union = tf.count_nonzero(tf.add(yt0, yp0))
+    iou = tf.where(tf.equal(union, 0), 1., tf.cast(inter/union, 'float32'))
+    return iou
