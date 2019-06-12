@@ -45,6 +45,7 @@ def trainGenerator(batch_size,
         target_size=target_size,
         batch_size=batch_size,
         save_prefix=image_save_prefix,
+        shuffle=False,
         seed=seed)
 
     mask_generator = mask_datagen.flow_from_directory(
@@ -55,6 +56,7 @@ def trainGenerator(batch_size,
         target_size=target_size,
         batch_size=batch_size,
         save_prefix=mask_save_prefix,
+        shuffle=False,
         seed=seed)
 
     train_generator = zip(image_generator, mask_generator)
@@ -64,17 +66,18 @@ def trainGenerator(batch_size,
 
 
 def valGenerator(val_path, image_folder, target_size):
-   # aug_dict for validation is not needed
+    # aug_dict for validation is not needed
     aug_dict = dict()
     val_datagen = ImageDataGenerator(**aug_dict)
     image_generator = val_datagen.flow_from_directory(
         val_path,
-        classes = [image_folder],
-        class_mode = None,
-        color_mode = "grayscale",
-        target_size = target_size,
-        batch_size = 1,
-        save_to_dir = False,
+        classes=[image_folder],
+        class_mode=None,
+        color_mode="grayscale",
+        target_size=target_size,
+        batch_size=1,
+        save_to_dir=False,
+        shuffle=False,
         seed=1)
 
     gen = image_generator
