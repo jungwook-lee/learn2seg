@@ -2,11 +2,15 @@
   <img src="docs/repo_logo.png">
 </p>
 
-> Learn to segment images using only bounding box annotations!
+<p align="center">
+  Learn to segment images using only bounding box annotations!
+</p>
+
+## Features
+
 
 The following package provides a framework to easily apply weakly annotated learning for segmentation.
 
-## Features
 
 #### Current limitations:
 - Only works on greyscale images
