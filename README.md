@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  Learn to segment images using only bounding box annotations!
+  > Learn to segment images using only bounding box annotations!
 </p>
 
 ## Features
