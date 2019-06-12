@@ -10,7 +10,7 @@
 
 The following package provides a framework to easily apply weakly annotated learning for segmentation. The packages aims to provide users to train their own model to deploy segmentation models that are only trained on bounding boxes. The intended use is for prototyping/research purposes.
 
-- Implements Unet [1] as the base segmentattion model to learning model.
+- Implements Unet [1],[3] as the base segmentattion model to learning model.
 - Utilizes approaches mentioned in Simple Does It by Khoreva et al [2].
 
 #### Current limitations:
