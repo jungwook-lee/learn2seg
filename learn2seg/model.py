@@ -4,7 +4,7 @@ from keras.layers import *
 from keras.optimizers import *
 from keras import backend as keras
 
-import learn2seg.iou as iou
+import learn2seg.metrics as metrics
 
 
 def unet(pretrained_weights=None, input_size=(512, 512, 1), weight_div=1, double_layer=False, lr=1e-4):
@@ -89,7 +89,7 @@ def unet(pretrained_weights=None, input_size=(512, 512, 1), weight_div=1, double
     model.compile(optimizer=Adam(lr=lr),
                   loss='binary_crossentropy',
                   #loss=jaccard_distance_loss,
-                  metrics=['acc', iou.iou_score]) # binary_accuracy
+                  metrics=['acc', metrics.iou_score]) # binary_accuracy
     
     #model.summary()
 

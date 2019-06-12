@@ -2,7 +2,7 @@
 import argparse
 
 from learn2seg.feeder import *
-from learn2seg.instance_set import InstanceDataset
+from learn2seg.datasets.instance import InstanceDataset
 
 import learn2seg.tools as tools
 import learn2seg.trainer as trainer

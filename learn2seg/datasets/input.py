@@ -12,7 +12,7 @@ root_path = os.path.dirname(root_path)
 dataset_root = os.path.join(root_path, 'dataset/orig_teeth/pan-teeth')
 
 
-class TeethBoxesDataset(object):
+class InputDataset(object):
     img_path = os.path.join(dataset_root, 'img')
     ann_path = os.path.join(dataset_root, 'ann')  # ann for annotations
 
