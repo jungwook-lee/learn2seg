@@ -7,7 +7,7 @@ dataset_config:
 #-----------------------------------------------------------------------------
 # Training Parameters
 train_config:
-    out_path: /home/jung/output/seg_model
+    out_path: /home/ubuntu/output/seg_model
 
     weight_div: 2
     double_layer: False
