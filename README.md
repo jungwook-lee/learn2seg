@@ -100,3 +100,7 @@ python scripts/train.py /path/to/config/file.yaml
 
 [unet]:https://github.com/zhixuhao/unet
 [simple_does_it]:https://arxiv.org/pdf/1603.07485.pdf
+
+## Disclaimer 
+
+The following is an Artificial Intelligence Project done at Insight Fellowship.
