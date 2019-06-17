@@ -7,6 +7,7 @@ from learn2seg.datasets.instance import InstanceDataset
 import learn2seg.tools as tools
 import learn2seg.trainer as trainer
 import learn2seg.evaluator as evaluator
+import learn2seg.filter as filter
 
 
 if __name__ == "__main__":
@@ -33,3 +34,10 @@ if __name__ == "__main__":
 
         # Evaluate the performance
         evaluator.eval(new_dataset, train_config, train_it)
+
+        # Filter the output with less than 50 % iou
+        pre_dir, cur_dir = filter.get_label_dirs(config_dict, train_it)
+        print(pre_dir, cur_dir)
+
+        print('------- End of Iteration --------')
+        filter.iou_filter(pre_dir=pre_dir, cur_dir=cur_dir, iou_thresh=0.5)

@@ -1,7 +1,7 @@
 #-----------------------------------------------------------------------------
 # Dataset
 dataset_config:
-    data_path: /home/ubuntu/dataset/seg_teeth_v2
+    data_path: /home/ubuntu/dataset/seg_teeth_eq_v2_unit
     image_size: [496, 352]
 
 #-----------------------------------------------------------------------------
@@ -16,7 +16,7 @@ train_config:
 
     apply_aug: False
 
-    train_epoch: 100
+    train_epoch: 5
     train_steps: 1
     val_steps: 1
     test_steps: 1

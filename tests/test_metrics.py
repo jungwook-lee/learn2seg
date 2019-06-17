@@ -46,6 +46,30 @@ class MetricTest(unittest.TestCase):
         expected_iou = 0.625
         self.assertEqual(expected_iou, out_iou)
 
+    def test_np_iou(self):
+
+        # test the iou output
+        true = [[0, 0, 0, 0],
+                [1, 1, 1, 1],
+                [1, 1, 1, 1],
+                [0, 0, 0, 0]
+                ]
+
+        true = np.asarray(true, dtype=np.float32)
+
+        pred = [[0, 0, 0, 0],
+                [0, 1, 1, 1],
+                [1, 0, 1, 0],
+                [0, 0, 0, 0]
+                ]
+
+        pred = np.asarray(pred, dtype=np.float32)
+
+        out_iou = metrics.np_bin_iou(pred, true)
+
+        expected_iou = 0.625
+        self.assertEqual(expected_iou, out_iou)
+
 
 if __name__ == "main":
     unittest.main()
