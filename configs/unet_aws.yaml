@@ -12,13 +12,13 @@ train_config:
     weight_div: 2
     double_layer: False
 
-    batch_size: 2
+    batch_size: 1
 
     apply_aug: True
 
-    train_epoch: 100
-    train_steps: 3839
-    val_steps: 719
-    test_steps: 239
+    train_epoch: 5 # 100
+    train_steps: 3839 # 3839
+    val_steps: 719 # 719
+    test_steps: 293 # 293
 
     learning_rate: 1e-4
