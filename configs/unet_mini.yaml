@@ -22,3 +22,5 @@ train_config:
     test_steps: 239
 
     learning_rate: 1e-4
+
+    train_iterations: 3

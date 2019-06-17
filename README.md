@@ -41,13 +41,13 @@ In order to use the preprocessing scripts, users need to structure the first inp
 ```
 dataset
 └───images
-|    ├─── 0.png
+|    ├─── 000000.png
 |    ├─── ...
-|    └─── 1000.png
+|    └─── 001000.png
 └───boxes
-     ├─── 0.json
+     ├─── 000000.json
      ├─── ...
-     └─── 1000.json
+     └─── 001000.json
 ```
 
 In each of the json file that corresponds to the images, please have the following entry for each bounding box:
@@ -64,13 +64,13 @@ processed_dataset
 └───train
 |    ├───index.txt
 |    ├───image
-|    |    ├─── 0.png
+|    |    ├─── 000000.png
 |    |    ├─── ...
-|    |    └─── 1000.png
+|    |    └─── 001000.png
 |    └───label
-|         ├─── 0.png
+|         ├─── 000000.png
 |         ├─── ...
-|         └─── 1000.png
+|         └─── 001000.png
 └───val
 |    ├───index.txt
 |    ├───image
