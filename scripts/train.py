@@ -26,7 +26,7 @@ if __name__ == "__main__":
         os.mkdir(out_path)
 
     # Implement iterative training
-    train_iterations = 3
+    train_iterations = train_config['train_iterations']
     for train_it in range(train_iterations):
         his = trainer.train_model(new_dataset, train_config, train_it)
         trainer.plot_model(his, train_config, train_it)
