@@ -19,6 +19,7 @@ def adjustData(img, mask):
 
 def trainGenerator(batch_size,
                    train_path,
+                   mask_path,
                    image_folder,
                    mask_folder,
                    aug_dict,
@@ -48,7 +49,7 @@ def trainGenerator(batch_size,
         seed=seed)
 
     mask_generator = mask_datagen.flow_from_directory(
-        train_path,
+        mask_path,
         classes=[mask_folder],
         class_mode=None,
         color_mode=mask_color_mode,

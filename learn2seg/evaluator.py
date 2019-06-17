@@ -8,7 +8,7 @@ from learn2seg.model import unet
 from learn2seg.feeder import *
 
 
-def eval(dataset, train_config, iteration=0):
+def eval(dataset, train_config, iteration):
     out_path = train_config['out_path']
     eval_path = os.path.join(out_path, 'eval_%d' % iteration)
     if os.path.exists(eval_path):
@@ -32,7 +32,9 @@ def eval(dataset, train_config, iteration=0):
                  lr=learn_rate
                  )
 
-    weight_path = os.path.join(train_config['out_path'], "checkpoint.hdf5")
+    file_str = "checkpoint_{}.hdf5".format(iteration)
+    file_path = os.path.join(out_path, file_str)
+    weight_path = os.path.join(file_path)
     model.load_weights(weight_path)
 
     # Generate results for all three splits [train/val/test]
@@ -51,4 +53,8 @@ def eval(dataset, train_config, iteration=0):
                                  'eval_%d' % iteration,
                                  split)
         os.mkdir(eval_path)
+
+        eval_path = os.path.join(eval_path, 'label')
+        os.mkdir(eval_path)
+
         saveResult(eval_path, results)

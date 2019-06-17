@@ -25,8 +25,11 @@ if __name__ == "__main__":
     else:
         os.mkdir(out_path)
 
-    his = trainer.train_model(new_dataset, train_config)
-    trainer.plot_model(his, train_config)
+    # Implement iterative training
+    train_iterations = 3
+    for train_it in range(train_iterations):
+        his = trainer.train_model(new_dataset, train_config, train_it)
+        trainer.plot_model(his, train_config, train_it)
 
-    # Evaluate the performance
-    evaluator.eval(new_dataset, train_config)
+        # Evaluate the performance
+        evaluator.eval(new_dataset, train_config, train_it)
