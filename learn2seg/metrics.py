@@ -68,3 +68,24 @@ def bin_iou(y_true, y_pred):
     union = tf.count_nonzero(tf.add(yt0, yp0))
     iou = tf.where(tf.equal(union, 0), 1., tf.cast(inter/union, 'float32'))
     return iou
+
+
+def np_bin_iou(gt_im, out_im):
+    """ Numpy implementation of binary IoU
+
+    Args:
+        gt_im (np.ndarray): 2D array image with 0 - 1 intensity value
+        out_im (np.ndarray): 2D array image with 0 - 1 intensity value
+
+    Returns:
+
+    """
+    # Threshold and reshape
+    gt = (gt_im > 0.5)
+    out = (out_im > 0.5)
+
+    # Calculate Intersection over Union
+    intersec = np.sum(np.bitwise_and(gt, out))
+    union = np.sum(np.bitwise_or(gt, out))
+    iou = intersec / union
+    return iou
