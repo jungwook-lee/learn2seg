@@ -20,7 +20,6 @@ train_config:
     train_epoch: 5
     train_steps: 1
     val_steps: 1
-    test_steps: 1
 
     train_iterations: 3
 
