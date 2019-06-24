@@ -8,17 +8,15 @@ import learn2seg.metrics as metrics
 # TODO: Use this method in train/evalutor
 def get_label_dirs(config, iteration):
     datset_config = config['dataset_config']
-    train_config = config['train_config']
+    out_dir = config['out_path']
 
     if iteration == 0:
         dataset_path = datset_config['data_path']
         pre_dir = dataset_path
     else:
-        out_dir = train_config['out_path']
         it_str = 'eval_{}'.format(iteration - 1)
         pre_dir = os.path.join(out_dir, it_str)
 
-    out_dir = train_config['out_path']
     it_str = 'eval_{}'.format(iteration)
     cur_dir = os.path.join(out_dir, it_str)
 

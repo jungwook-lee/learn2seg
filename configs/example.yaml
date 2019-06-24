@@ -1,12 +1,30 @@
-# Dataset Stuff -------------------------------------------------
+#-----------------------------------------------------------------------------
+# Dataset
+dataset_config:
+    data_path: # /path/to/dataset
+    image_size: # [width, height]
 
-data_path: /home/jung/dataset/seg_teeth_eq_v2
-output_path: ~/output
+#-----------------------------------------------------------------------------
+# Training Parameters
+out_path: # /path/to/out
 
-# Image [Height, Width]
-image_size: [496, 352]
+model_config:
+    weight_div: # parameter to divide the weights by multiple of 2
+    double_layer: # parameter to double the conv layers of unet
+    learning_rate: # Learning rate
 
-# Training Hyperparams --------------------------------------
+train_config:
+    batch_size: # batch size during training
+    apply_aug: # True/False to apply augmentation
 
-batch_size: 128
-num_epochs: 200
+    train_epoch: # # of epoch to run training
+    train_steps: # # of steps for train set
+    val_steps: # # of steps for validation set
+    test_steps: # # of steps for test set
+
+    train_iterations: # Number of iterative training to do
+
+eval_config:
+    train_steps: # of steps to run for evaluating train set
+    val_steps: # of steps to run for evaluating val set
+    test_steps: # of steps to run for evaluating test set

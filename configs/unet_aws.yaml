@@ -6,14 +6,15 @@ dataset_config:
 
 #-----------------------------------------------------------------------------
 # Training Parameters
-train_config:
-    out_path: /home/ubuntu/output/seg_model
+out_path: /home/ubuntu/output/seg_model
 
+model_config:
     weight_div: 2
     double_layer: False
+    learning_rate: 1e-4
 
+train_config:
     batch_size: 2
-
     apply_aug: True
 
     train_epoch: 100
@@ -21,6 +22,9 @@ train_config:
     val_steps: 719
     test_steps: 239
 
-    learning_rate: 1e-4
-
     train_iterations: 3
+
+eval_config:
+    train_steps: 3839
+    val_steps: 719
+    test_steps: 239

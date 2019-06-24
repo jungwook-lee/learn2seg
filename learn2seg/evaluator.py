@@ -8,8 +8,7 @@ from learn2seg.model import unet
 from learn2seg.feeder import *
 
 
-def eval(dataset, train_config, iteration):
-    out_path = train_config['out_path']
+def eval(dataset, model_config, eval_config, out_path, iteration):
     eval_path = os.path.join(out_path, 'eval_%d' % iteration)
     if os.path.exists(eval_path):
         raise ValueError("eval_path already exists!")
@@ -24,10 +23,10 @@ def eval(dataset, train_config, iteration):
 
     input_size = copy.deepcopy(dataset.im_size)
     input_size.append(1)
-    learn_rate = float(train_config['learning_rate'])
+    learn_rate = float(model_config['learning_rate'])
 
-    model = unet(weight_div=train_config['weight_div'],
-                 double_layer=train_config['double_layer'],
+    model = unet(weight_div=model_config['weight_div'],
+                 double_layer=model_config['double_layer'],
                  input_size=input_size,
                  lr=learn_rate
                  )
@@ -45,13 +44,11 @@ def eval(dataset, train_config, iteration):
 
         steps_key = split + '_steps'
         results = model.predict_generator(data_gene,
-                                          steps=train_config[steps_key],
+                                          steps=eval_config[steps_key],
                                           verbose=1
                                           )
 
-        eval_path = os.path.join(train_config['out_path'],
-                                 'eval_%d' % iteration,
-                                 split)
+        eval_path = os.path.join(out_path, 'eval_%d' % iteration, split)
         os.mkdir(eval_path)
 
         eval_path = os.path.join(eval_path, 'label')
