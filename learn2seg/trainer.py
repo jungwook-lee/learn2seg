@@ -11,7 +11,7 @@ from learn2seg.model import *
 from learn2seg.feeder import *
 
 
-def train_model(dataset, train_config, train_it=0):
+def train_model(dataset, model_config, train_config, out_path, train_it):
 
     # Setup TF configs
     sess_config = tf.ConfigProto()
@@ -23,12 +23,11 @@ def train_model(dataset, train_config, train_it=0):
     train_epoch = train_config['train_epoch']
     train_steps = train_config['train_steps']
     val_steps = train_config['val_steps']
-
     batch_size = train_config['batch_size']
-    learning_rate = train_config['learning_rate']
-    weight_div = train_config['weight_div']
-    double_layer = train_config['double_layer']
-    out_path = train_config['out_path']
+
+    learning_rate = model_config['learning_rate']
+    weight_div = model_config['weight_div']
+    double_layer = model_config['double_layer']
 
     # Add option for data_aug
     data_gen_args = dict()
@@ -116,8 +115,8 @@ def train_model(dataset, train_config, train_it=0):
     return history
 
 
-def plot_model(history, train_config, train_it):
-    plot_dir = os.path.join(train_config['out_path'], 'plot')
+def plot_model(history, out_path, train_it):
+    plot_dir = os.path.join(out_path, 'plot')
     if not os.path.exists(plot_dir):
         os.mkdir(plot_dir)
 

@@ -17,10 +17,12 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     config_dict = tools.get_configs(args.configs[0])
+    model_config = config_dict['model_config']
     train_config = config_dict['train_config']
+    eval_config = config_dict['eval_config']
     new_dataset = InstanceDataset(config_dict)
 
-    out_path = train_config['out_path']
+    out_path = config_dict['out_path']
     if os.path.exists(out_path):
         raise ValueError("Out path already exists!")
     else:
@@ -28,15 +30,21 @@ if __name__ == "__main__":
 
     # Implement iterative training
     train_iterations = train_config['train_iterations']
-    for train_it in range(train_iterations):
-        his = trainer.train_model(new_dataset, train_config, train_it)
-        trainer.plot_model(his, train_config, train_it)
+    for it in range(train_iterations):
+
+        his = trainer.train_model(new_dataset,
+                                  model_config,
+                                  train_config,
+                                  out_path,
+                                  it)
+
+        trainer.plot_model(his, out_path, it)
 
         # Evaluate the performance
-        evaluator.eval(new_dataset, train_config, train_it)
+        evaluator.eval(new_dataset, model_config, eval_config, out_path, it)
 
         # Filter the output with less than 50 % iou
-        pre_dir, cur_dir = filter.get_label_dirs(config_dict, train_it)
+        pre_dir, cur_dir = filter.get_label_dirs(config_dict, it)
         print(pre_dir, cur_dir)
 
         print('------- End of Iteration --------')
