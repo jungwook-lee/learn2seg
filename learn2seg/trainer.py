@@ -1,6 +1,9 @@
 """ Unet training code from https://github.com/zhixuhao/unet """
+from datetime import datetime
+
 from keras.backend.tensorflow_backend import set_session
 from keras.callbacks import ModelCheckpoint
+from keras.callbacks import TensorBoard
 
 import matplotlib.pyplot as plt
 
@@ -97,12 +100,19 @@ def train_model(dataset, train_config, train_it=0):
     # train samples - 7821, val - 1345, test - 398
     # unit samples - 98, val - 15
     # warp unit (92/12/1)/(3839/719)
+
+    # Setup tensorboard callbacks
+    log_str = "tf_log_" + str(train_it)
+    logdir = os.path.join(out_path, log_str)
+    tensorboard_callback = TensorBoard(log_dir=logdir)
+
     history = model.fit_generator(train_gen,
                                   validation_data=val_gen,
                                   validation_steps=val_steps,
                                   steps_per_epoch=train_steps,
                                   epochs=train_epoch,
-                                  callbacks=[model_checkpoint])
+                                  callbacks=[model_checkpoint,
+                                             tensorboard_callback])
     return history
 
 
