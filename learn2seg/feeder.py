@@ -28,7 +28,8 @@ def trainGenerator(batch_size,
                    image_save_prefix="image",
                    mask_save_prefix="mask",
                    target_size=(512, 512),
-                   seed=1):
+                   seed=1,
+                   shuffle=False):
     '''
     can generate image and mask at the same time
     use the same seed for image_datagen and mask_datagen to ensure the
@@ -46,7 +47,9 @@ def trainGenerator(batch_size,
         target_size=target_size,
         batch_size=batch_size,
         save_prefix=image_save_prefix,
-        seed=seed)
+        seed=seed,
+        shuffle=shuffle,
+        )
 
     mask_generator = mask_datagen.flow_from_directory(
         mask_path,
@@ -56,7 +59,9 @@ def trainGenerator(batch_size,
         target_size=target_size,
         batch_size=batch_size,
         save_prefix=mask_save_prefix,
-        seed=seed)
+        seed=seed,
+        shuffle=shuffle,
+        )
 
     train_generator = zip(image_generator, mask_generator)
     for (img, mask) in train_generator:

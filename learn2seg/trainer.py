@@ -64,7 +64,9 @@ def train_model(dataset, train_config, train_it=0):
                                image_folder='image',
                                mask_folder='label',
                                aug_dict=data_gen_args,
-                               target_size=dataset.im_size)
+                               target_size=dataset.im_size,
+                               shuffle=True,
+                               )
 
     val_gen = trainGenerator(batch_size=batch_size,
                              train_path=val_path,
