@@ -77,6 +77,7 @@ def train_model(dataset, model_config, train_config, out_path, train_it):
                              mask_folder='label',
                              aug_dict=dict(),
                              target_size=dataset.im_size,
+                             shuffle=True,
                              )
 
     # Extend the dimension to (width, height, channel)
