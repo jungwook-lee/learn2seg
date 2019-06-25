@@ -36,15 +36,20 @@ def iou_filter(pre_dir, cur_dir, iou_thresh):
     if not os.path.exists(pre_dir) and not os.path.exists(cur_dir):
         raise ValueError('Given folder to filter does not exist!')
 
-    splits = ['train', 'val', 'test']
-
-    for split in splits:
+    for split in ['train', 'val', 'test']:
         pre_path = os.path.join(pre_dir, split, 'label')
         cur_path = os.path.join(cur_dir, split, 'label')
 
         # get all files in the directories
         pre_dir_files = sorted(os.listdir(pre_path))
         cur_dir_files = sorted(os.listdir(cur_path))
+
+        # read the index file to obtain the data labels
+        index_file = np.genfromtxt(os.path.join(pre_dir, split, 'index.txt'),
+                             delimiter=',')
+
+        if len(index_file.shape) == 1:
+            index_file = np.asarray([index_file])
 
         # make sure they are the same length when sorted
         assert (len(pre_dir_files) == len(cur_dir_files))
@@ -57,10 +62,16 @@ def iou_filter(pre_dir, cur_dir, iou_thresh):
             pre_im = io.imread(pre_im_path, as_gray=True)
             cur_im = io.imread(cur_im_path, as_gray=True)
 
-            iou_score = metrics.np_bin_iou(pre_im, cur_im)
+            if index_file[i, 0] == 1.:
+                # None background bounding boxes
+                iou_score = metrics.np_bin_iou(pre_im, cur_im)
 
-            if iou_score < iou_thresh:
-                # Replace the prev im with cur im
+                if iou_score < iou_thresh:
+                    # Replace the prev im with cur im
+                    os.remove(cur_im_path)
+                    io.imsave(cur_im_path, pre_im.astype(np.uint8))
+                    # print("Replacing file number: {}".format(i))
+            else:
+                # background class, propagate all the negatives
                 os.remove(cur_im_path)
                 io.imsave(cur_im_path, pre_im.astype(np.uint8))
-                # print("Replacing file number: {}".format(i))

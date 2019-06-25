@@ -1,6 +1,7 @@
 """ Unet training code from https://github.com/zhixuhao/unet """
 
 import copy
+from shutil import copyfile
 import tensorflow as tf
 from keras.backend.tensorflow_backend import set_session
 
@@ -55,3 +56,9 @@ def eval(dataset, model_config, eval_config, out_path, iteration):
         os.mkdir(eval_path)
 
         saveResult(eval_path, results)
+
+        # Copy the index files to the eval folders
+        src_path = os.path.join(dataset.split_path[split], 'index.txt')
+        eval_path = os.path.join(out_path, 'eval_%d' % iteration, split)
+        dest_path = os.path.join(eval_path, 'index.txt')
+        copyfile(src_path, dest_path)
