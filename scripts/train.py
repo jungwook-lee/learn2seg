@@ -1,5 +1,6 @@
 """ Unet training code from https://github.com/zhixuhao/unet """
 import argparse
+from shutil import copyfile
 
 from learn2seg.feeder import *
 from learn2seg.datasets.instance import InstanceDataset
@@ -27,6 +28,10 @@ if __name__ == "__main__":
         raise ValueError("Out path already exists!")
     else:
         os.mkdir(out_path)
+    
+    # Copy the config file before beginning the training
+    config_out_file = os.path.join(out_path, 'run_config.yaml')
+    copyfile(args.configs[0], config_out_file)
 
     # Implement iterative training
     train_iterations = train_config['train_iterations']
