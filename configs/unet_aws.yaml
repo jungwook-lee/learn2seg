@@ -6,7 +6,7 @@ dataset_config:
 
 #-----------------------------------------------------------------------------
 # Training Parameters
-out_path: /home/ubuntu/output/seg_model
+out_path: /home/ubuntu/output/seg_model_07_24_bug
 
 model_config:
     weight_div: 2
@@ -17,10 +17,9 @@ train_config:
     batch_size: 2
     apply_aug: True
 
-    train_epoch: 100
-    train_steps: 3839
-    val_steps: 719
-    test_steps: 239
+    train_epoch: 100 # 100
+    train_steps: 400 # 3839
+    val_steps: 100 # 719
 
     train_iterations: 3
 

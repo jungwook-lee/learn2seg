@@ -48,7 +48,7 @@ def train_model(dataset, model_config, train_config, out_path, train_it):
     val_path = dataset.split_path['val']
     if train_it == 0:
         train_mask_path = train_path
-        val_mask_path = train_path
+        val_mask_path = val_path
     else:
         # Iteration get output path
         it_str = 'eval_{}'.format(train_it-1)
@@ -70,13 +70,14 @@ def train_model(dataset, model_config, train_config, out_path, train_it):
                                shuffle=True,
                                )
 
-    val_gen = trainGenerator(batch_size=batch_size,
+    val_gen = trainGenerator(batch_size=1,
                              train_path=val_path,
                              mask_path=val_mask_path,
                              image_folder='image',
                              mask_folder='label',
                              aug_dict=dict(),
-                             target_size=dataset.im_size)
+                             target_size=dataset.im_size,
+                             )
 
     # Extend the dimension to (width, height, channel)
     input_size = copy.deepcopy(dataset.im_size)
