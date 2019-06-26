@@ -1,0 +1,29 @@
+#-----------------------------------------------------------------------------
+# Dataset
+dataset_config:
+    data_path: /home/ubuntu/dataset/seg_teeth_v3
+    image_size: [496, 352]
+
+#-----------------------------------------------------------------------------
+# Training Parameters
+out_path: /home/ubuntu/output/seg_model_v3_0726
+
+model_config:
+    weight_div: 2
+    double_layer: False
+    learning_rate: 1e-4
+
+train_config:
+    batch_size: 1
+    apply_aug: True
+
+    train_epoch: 100
+    train_steps: 70
+    val_steps: 50
+
+    train_iterations: 5
+
+eval_config:
+    train_steps: 6533
+    val_steps: 1097
+    test_steps: 275
