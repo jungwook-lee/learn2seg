@@ -53,4 +53,7 @@ if __name__ == "__main__":
         print(pre_dir, cur_dir)
 
         print('------- End of Iteration --------')
-        filter.iou_filter(pre_dir=pre_dir, cur_dir=cur_dir, iou_thresh=0.5)
+        
+        # Don't filter output for the final iteration
+        if it < (train_iterations - 1):
+          filter.iou_filter(pre_dir=pre_dir, cur_dir=cur_dir, iou_thresh=0.5)
