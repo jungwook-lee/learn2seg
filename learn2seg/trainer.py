@@ -1,6 +1,4 @@
 """ Unet training code from https://github.com/zhixuhao/unet """
-from datetime import datetime
-
 from keras.backend.tensorflow_backend import set_session
 from keras.callbacks import ModelCheckpoint
 from keras.callbacks import TensorBoard
@@ -88,6 +86,13 @@ def train_model(dataset, model_config, train_config, out_path, train_it):
                  double_layer=double_layer,
                  input_size=input_size,
                  lr=learn_rate)
+
+    if train_it > 0:
+        # Initialize with previously trained weights if not first iteration
+        file_str = "checkpoint_{}.hdf5".format(train_it - 1)
+        file_path = os.path.join(out_path, file_str)
+        weight_path = os.path.join(file_path)
+        model.load_weights(weight_path)
 
     file_str = "checkpoint_{}.hdf5".format(train_it)
     file_path = os.path.join(out_path, file_str)

@@ -50,7 +50,6 @@ if __name__ == "__main__":
 
         # Filter the output with less than 50 % iou
         pre_dir, cur_dir = filter.get_label_dirs(config_dict, it)
-        print(pre_dir, cur_dir)
 
         print('------- End of Iteration --------')
         filter.iou_filter(pre_dir=pre_dir, cur_dir=cur_dir, iou_thresh=0.5)
