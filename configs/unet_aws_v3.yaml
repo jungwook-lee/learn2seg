@@ -6,22 +6,22 @@ dataset_config:
 
 #-----------------------------------------------------------------------------
 # Training Parameters
-out_path: /home/ubuntu/output/seg_model_v3_0726
+out_path: /home/ubuntu/output/seg_model_v3_0726_jacc
 
 model_config:
     weight_div: 2
-    double_layer: False
-    learning_rate: 1e-4
+    double_layer: True
+    learning_rate: 1e-5
 
 train_config:
     batch_size: 1
-    apply_aug: True
+    apply_aug: False
 
     train_epoch: 100
-    train_steps: 70
+    train_steps: 20
     val_steps: 50
 
-    train_iterations: 5
+    train_iterations: 3
 
 eval_config:
     train_steps: 6533

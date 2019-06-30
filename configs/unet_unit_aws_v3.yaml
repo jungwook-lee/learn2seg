@@ -14,17 +14,17 @@ model_config:
     learning_rate: 1e-4
 
 train_config:
-    batch_size: 1
+    batch_size: 2
     apply_aug: True
 
-    train_epoch: 100
-    train_steps: 70
-    val_steps: 50
+    train_epoch: 5
+    train_steps: 30
+    val_steps: 2
     test_steps: 2
 
     train_iterations: 3
 
 eval_config:
-    train_steps: 6533
-    val_steps: 1097
-    test_steps: 275
+    train_steps: 2
+    val_steps: 2
+    test_steps: 2
